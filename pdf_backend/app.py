@@ -175,7 +175,7 @@ def build_report_pdf(scan_data, session_id):
             pdf.set_text_color(255, 255, 255)
             pdf.set_font("Helvetica", "B", 7)
             name = f.get("name", f.get("title", "Finding"))
-            name = name[:40] + "…" if len(name) > 42 else name
+            name = name[:40] + "..." if len(name) > 42 else name
             pdf.cell(col_widths[0], 6, f"  {name}", fill=True, border=0)
 
             # CVSS
@@ -187,12 +187,12 @@ def build_report_pdf(scan_data, session_id):
 
             # Description
             desc = f.get("description", "—")
-            desc = desc[:100] + "…" if len(desc) > 102 else desc
+            desc = desc[:100] + "..." if len(desc) > 102 else desc
             pdf.set_font("Helvetica", "", 7)
             pdf.cell(col_widths[2], 6, desc[:70], fill=True, border=0)
 
             # Remediation
-            rem = f.get("remediation", f.get("fix", "—"))[:60] + "…"
+            rem = f.get("remediation", f.get("fix", "—"))[:60] + "..."
             pdf.set_font("Helvetica", "", 7)
             pdf.cell(col_widths[3], 6, rem[:50], fill=True, border=0)
             pdf.ln(6)
