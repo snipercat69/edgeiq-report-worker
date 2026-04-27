@@ -1,0 +1,30 @@
+services:
+  - name: edgeiq-checkout
+    env: python3.11
+    region: oregon
+    repo: https://github.com/snipercat69/edgeiq-report-worker
+    branch: main
+    rootDir: checkout_server
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:10000
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: APP_URL
+        value: https://edgeiqlabs.com
+        sync: false
+
+  - name: edgeiq-pdf
+    env: python3.11
+    region: oregon
+    repo: https://github.com/snipercat69/edgeiq-report-worker
+    branch: main
+    rootDir: pdf_backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:10000
+    healthCheckPath: /health
+    plan: free
