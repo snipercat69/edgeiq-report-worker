@@ -6,7 +6,7 @@ services:
     branch: main
     rootDir: checkout_server
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:10000
+    startCommand: FLASK_APP=app.py python3 -m flask run --host=0.0.0.0 --port=10000
     healthCheckPath: /health
     plan: free
     envVars:
@@ -25,6 +25,6 @@ services:
     branch: main
     rootDir: pdf_backend
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app --bind 0.0.0.0:10000
+    startCommand: FLASK_APP=app.py python3 -m flask run --host=0.0.0.0 --port=10000
     healthCheckPath: /health
     plan: free
