@@ -1,0 +1,14 @@
+name = "edgeiq-report-worker"
+main = "src/index.ts"
+compatibility_date = "2024-04-19"
+
+[vars]
+ALLOWED_ORIGIN = "https://edgeiqlabs.com"
+
+# KV namespace for payment records
+[[kv_namespaces]]
+binding = "EDGEIQ_KV"
+id = "YOUR_KV_NAMESPACE_ID"
+
+[observability]
+enabled = true
