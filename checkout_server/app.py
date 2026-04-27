@@ -7,7 +7,7 @@ with session_id. The report page verifies payment and generates the PDF.
 
 Deploy to: Render.com (Free) — or any Python host
 """
-import os, json, base64
+import os, json, base64, time
 from flask import Flask, request, jsonify, redirect
 import stripe
 
@@ -45,7 +45,7 @@ def create_checkout_session():
     
     # Encode scan data to pass through Stripe metadata (limit 500 chars per field)
     # For large scan data, we store in KV and just pass a reference key
-    scan_key = f"scan_{request.remote_addr}_{int(os.time.time())}"
+    scan_key = f"scan_{request.remote_addr}_{int(time.time())}"
     
     # Build metadata
     metadata = {
